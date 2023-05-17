@@ -3,7 +3,10 @@ package com.spring.template.silver.app.entrypoint.controller;
 import com.spring.template.silver.app.entrypoint.controller.handler.LoginHandler;
 import com.spring.template.silver.app.entrypoint.payload.LoginRequest;
 import com.spring.template.silver.app.entrypoint.payload.LoginResponse;
+import com.spring.template.silver.app.usecase.constraint.StringConstraint;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +29,7 @@ public class LoginController {
 
   @GetMapping("/random")
   @PreAuthorize("hasRole('ROLE_USER')")
+  @Operation(security = @SecurityRequirement(name = StringConstraint.BEARER))
   public Map<String, String> randomStuff() {
     Map<String, String> data = new HashMap<>();
     data.put("message", "JWT Hợp lệ mới có thể thấy được message này");
