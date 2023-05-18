@@ -1,7 +1,7 @@
-package com.spring.template.silver.app.entrypoint.controller.handler;
+package com.spring.template.silver.app.entrypoint.handler;
 
-import com.spring.template.silver.app.entrypoint.payload.LoginRequest;
-import com.spring.template.silver.app.entrypoint.payload.LoginResponse;
+import com.spring.template.silver.app.entrypoint.payload.login.LoginRequest;
+import com.spring.template.silver.app.entrypoint.payload.login.LoginResponse;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;
 import com.spring.template.silver.app.usecase.service.UserService;
 import com.spring.template.silver.app.usecase.utils.JwtUtils;

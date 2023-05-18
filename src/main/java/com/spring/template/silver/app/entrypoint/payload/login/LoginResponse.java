@@ -1,4 +1,4 @@
-package com.spring.template.silver.app.entrypoint.payload;
+package com.spring.template.silver.app.entrypoint.payload.login;
 
 import lombok.*;
 

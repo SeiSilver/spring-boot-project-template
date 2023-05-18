@@ -1,6 +1,6 @@
 package com.spring.template.silver.app.usecase.service.impl;
 
-import com.spring.template.silver.app.entrypoint.payload.LoginRequest;
+import com.spring.template.silver.app.entrypoint.payload.login.LoginRequest;
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
 import com.spring.template.silver.app.infrastructure.jpa.AccountRepository;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;

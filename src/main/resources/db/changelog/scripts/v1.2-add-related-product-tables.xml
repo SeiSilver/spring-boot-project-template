@@ -22,12 +22,8 @@
             <column name="category_id" type="INT">
                 <constraints nullable="false"/>
             </column>
-            <column name="created_at" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
-            <column name="updated_at" type="TIMESTAMP">
-                <constraints nullable="false"/>
-            </column>
+            <column name="created_at" type="timestamp"/>
+            <column name="modified_at" type="timestamp"/>
         </createTable>
 
         <createTable tableName="category">
@@ -45,7 +41,6 @@
                 constraintName="table-product-fk-category_id"
                 referencedTableName="category"
                 referencedColumnNames="id"/>
-
 
     </changeSet>
 

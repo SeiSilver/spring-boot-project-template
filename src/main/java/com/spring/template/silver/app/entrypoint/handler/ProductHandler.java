@@ -1,10 +1,12 @@
-package com.spring.template.silver.app.entrypoint.controller.handler;
+package com.spring.template.silver.app.entrypoint.handler;
 
-import com.spring.template.silver.app.entrypoint.payload.NewProductRequest;
-import com.spring.template.silver.app.entrypoint.payload.UpdateProductRequest;
+import com.spring.template.silver.app.entrypoint.payload.product.NewProductRequest;
+import com.spring.template.silver.app.entrypoint.payload.product.ProductDto;
+import com.spring.template.silver.app.entrypoint.payload.product.UpdateProductRequest;
 import com.spring.template.silver.app.infrastructure.entity.ProductEntity;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;
 import com.spring.template.silver.app.usecase.service.ProductService;
+import com.spring.template.silver.app.usecase.utils.ModelMapperUtils;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,15 +17,17 @@ import java.util.List;
 public class ProductHandler {
 
   private final ProductService productService;
+  private final ModelMapperUtils modelMapperUtils;
 
-  public List<ProductEntity> getAllHandler() {
-    return productService.getAll();
+  public List<ProductDto> getAllHandler() {
+    var productEntityList = productService.getAll();
+    return modelMapperUtils.mapList(productEntityList, ProductDto.class);
   }
 
-  public ProductEntity getByIdHandler(Integer id) throws DataNotFoundException {
-    return productService.getById(id);
+  public ProductDto getByIdHandler(Integer id) throws DataNotFoundException {
+    var productEntity = productService.getById(id);
+    return modelMapperUtils.map(productEntity, ProductDto.class);
   }
-
 
   public void addHandler(NewProductRequest request) {
     ProductEntity productEntity = ProductEntity.builder()

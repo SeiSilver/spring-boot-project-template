@@ -19,8 +19,8 @@
             <column name="full_name" type="varchar(100)"/>
             <column name="avatar_url" type="varchar(255)"/>
             <column name="status" type="varchar(50)"/>
-            <column name="modified_at" type="timestamp"/>
             <column name="created_at" type="timestamp"/>
+            <column name="modified_at" type="timestamp"/>
         </createTable>
 
         <createTable tableName="role">

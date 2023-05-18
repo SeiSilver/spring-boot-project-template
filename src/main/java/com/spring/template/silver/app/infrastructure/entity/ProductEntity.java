@@ -1,8 +1,10 @@
 package com.spring.template.silver.app.infrastructure.entity;
 
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
@@ -14,6 +16,8 @@ import java.time.ZonedDateTime;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@EntityListeners(AuditingEntityListener.class)
+@FieldNameConstants
 public class ProductEntity {
 
   @Id

@@ -9,7 +9,7 @@
     <changeSet id="1.4.1" author="datpd">
 
         <sql>
-            insert into product (name, description, price, category_id, created_at, updated_at)
+            insert into product (name, description, price, category_id, created_at, modified_at)
             values ('Product name 1', 'Product 1 description', 3465000, 1, now(), now()),
                    ('Product name 2', 'Product 2 description', 3094000, 2, now(), now()),
                    ('Product name 3', 'Product 3 description', 4438000, 3, now(), now()),

@@ -1,4 +1,4 @@
-package com.spring.template.silver.app.entrypoint.payload;
+package com.spring.template.silver.app.entrypoint.payload.product;
 
 import com.spring.template.silver.app.infrastructure.entity.CategoryEntity;
 import lombok.*;
