@@ -4,6 +4,7 @@ import com.spring.template.silver.app.entrypoint.handler.ProductHandler;
 import com.spring.template.silver.app.entrypoint.payload.product.NewProductRequest;
 import com.spring.template.silver.app.entrypoint.payload.product.ProductDto;
 import com.spring.template.silver.app.entrypoint.payload.product.UpdateProductRequest;
+import com.spring.template.silver.app.infrastructure.dto.ProductInfo;
 import com.spring.template.silver.app.usecase.constraint.StringConstraint;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,6 +30,11 @@ public class ProductController {
   @GetMapping("/product/{id}")
   public ProductDto getById(@PathVariable Integer id) throws DataNotFoundException {
     return productHandler.getByIdHandler(id);
+  }
+
+  @GetMapping("/v2/product/{id}")
+  public ProductInfo getByIdV2(@PathVariable Integer id) throws DataNotFoundException {
+    return productHandler.getByIdV2Handler(id);
   }
 
   @PostMapping("/product")

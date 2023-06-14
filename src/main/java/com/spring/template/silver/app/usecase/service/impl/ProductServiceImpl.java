@@ -1,5 +1,6 @@
 package com.spring.template.silver.app.usecase.service.impl;
 
+import com.spring.template.silver.app.infrastructure.dto.ProductInfo;
 import com.spring.template.silver.app.infrastructure.entity.ProductEntity;
 import com.spring.template.silver.app.infrastructure.jpa.ProductRepository;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;
@@ -41,6 +42,13 @@ public class ProductServiceImpl implements ProductService {
   public void deleteById(Integer id) throws DataNotFoundException {
     var product = getById(id);
     productRepository.delete(product);
+  }
+
+  @Override
+  public ProductInfo getByIdV2(Integer id) throws DataNotFoundException {
+    return productRepository.findById(id, ProductInfo.class).orElseThrow(
+        () -> new DataNotFoundException("Product not found!")
+    );
   }
 
 }

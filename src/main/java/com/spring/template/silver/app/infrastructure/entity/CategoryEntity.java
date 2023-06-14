@@ -1,6 +1,7 @@
 package com.spring.template.silver.app.infrastructure.entity;
 
 import lombok.*;
+import lombok.experimental.FieldNameConstants;
 
 import javax.persistence.*;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@FieldNameConstants
 public class CategoryEntity {
 
   @Id

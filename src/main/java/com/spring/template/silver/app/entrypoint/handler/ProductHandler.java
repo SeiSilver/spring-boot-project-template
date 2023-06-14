@@ -3,6 +3,7 @@ package com.spring.template.silver.app.entrypoint.handler;
 import com.spring.template.silver.app.entrypoint.payload.product.NewProductRequest;
 import com.spring.template.silver.app.entrypoint.payload.product.ProductDto;
 import com.spring.template.silver.app.entrypoint.payload.product.UpdateProductRequest;
+import com.spring.template.silver.app.infrastructure.dto.ProductInfo;
 import com.spring.template.silver.app.infrastructure.entity.ProductEntity;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;
 import com.spring.template.silver.app.usecase.service.ProductService;
@@ -29,6 +30,10 @@ public class ProductHandler {
     return modelMapperUtils.map(productEntity, ProductDto.class);
   }
 
+  public ProductInfo getByIdV2Handler(int id) throws DataNotFoundException {
+    return productService.getByIdV2(id);
+  }
+
   public void addHandler(NewProductRequest request) {
     ProductEntity productEntity = ProductEntity.builder()
         .name(request.getName())
@@ -52,7 +57,6 @@ public class ProductHandler {
 
   public void deleteByIdHandler(Integer id) throws DataNotFoundException {
     productService.deleteById(id);
-
   }
 
 }
