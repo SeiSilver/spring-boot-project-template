@@ -33,10 +33,10 @@ public class UserDataInitializer implements ApplicationListener<ContextRefreshed
   private void createDefaultUserData() {
     List<RoleEntity> allRoles = roleRepository.findAll();
 
-    if (userRepository.findByEmail("superadmin@gmail.com").isEmpty()) {
+    if (userRepository.findByEmail("admin@gmail.com").isEmpty()) {
       AccountEntity adminUser = AccountEntity.builder()
-          .email("superadmin@gmail.com")
-          .passwordHash(passwordEncoder.encode("admin@123"))
+          .email("admin@gmail.com")
+          .passwordHash(passwordEncoder.encode("123456"))
           .fullName("Admin")
           .status(AccountStatus.ACTIVE)
           .roles(allRoles)
@@ -44,11 +44,11 @@ public class UserDataInitializer implements ApplicationListener<ContextRefreshed
       userRepository.save(adminUser);
     }
 
-    if (userRepository.findByEmail("datpd.dev@gmail.com").isEmpty()) {
+    if (userRepository.findByEmail("user@gmail.com").isEmpty()) {
       AccountEntity adminUser = AccountEntity.builder()
-          .email("datpd.dev@gmail.com")
-          .passwordHash(passwordEncoder.encode("admin@123"))
-          .fullName("Silver")
+          .email("user@gmail.com")
+          .passwordHash(passwordEncoder.encode("123456"))
+          .fullName("User")
           .status(AccountStatus.ACTIVE)
           .roles(allRoles)
           .build();
