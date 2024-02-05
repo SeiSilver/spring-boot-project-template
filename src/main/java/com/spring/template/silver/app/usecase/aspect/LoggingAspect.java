@@ -3,7 +3,6 @@ package com.spring.template.silver.app.usecase.aspect;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.spring.template.silver.app.usecase.annotation.LogMethod;
-import liquibase.repackaged.org.apache.commons.lang3.time.StopWatch;
 import lombok.extern.log4j.Log4j2;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -12,6 +11,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StopWatch;
 
 import java.lang.reflect.Method;
 import java.util.stream.Collectors;
@@ -38,7 +38,7 @@ public class LoggingAspect {
               return signature.getParameterNames()[i] + "=" + objectMapper.writeValueAsString(pjp.getArgs()[i]);
             } catch (JsonProcessingException e) {
               log.error("cannot parse as JSON value = {}", pjp.getArgs()[i], e);
-              throw new RuntimeException(e);
+              throw new IllegalArgumentException(e);
             }
           })
           .collect(Collectors.joining(","));
@@ -46,11 +46,11 @@ public class LoggingAspect {
       stopWatch.start();
       final Object result = pjp.proceed();
       stopWatch.stop();
-      log.info("End execution of {} (running {} ms)", shortMethod, stopWatch.getTime());
+      log.info("End execution of {} (running {} ms)", shortMethod, stopWatch.getTotalTimeMillis());
       return result;
     } catch (Exception ex) {
       stopWatch.stop();
-      log.error("Fail execution of {} (running {} ms)", shortMethod, stopWatch.getTime(), ex);
+      log.error("Fail execution of {} (running {} ms)", shortMethod, stopWatch.getTotalTimeMillis(), ex);
       throw ex;
     }
   }

@@ -2,7 +2,7 @@ package com.spring.template.silver.app.entrypoint.payload.product;
 
 import lombok.*;
 
-import javax.validation.constraints.NotNull;
+import jakarta.validation.constraints.NotNull;
 
 @Getter
 @Setter

@@ -1,45 +1,38 @@
 package com.spring.template.silver.app.usecase.utils;
 
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
+import com.spring.template.silver.app.usecase.config.ApplicationProperties;
 import com.spring.template.silver.app.usecase.exception.InvalidJsonException;
 import com.spring.template.silver.app.usecase.security.dto.JwtDto;
 import io.jsonwebtoken.*;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
 import java.util.Date;
 
 @Component
+@AllArgsConstructor
 @Log4j2
 public class JwtUtils {
 
   private final PayloadUtils payloadUtils;
-
-  @Value("${application.jwtConfig.tokenSecret}")
-  private String TOKEN_SECRET;
-
-  @Value("${application.jwtConfig.tokenExpiredSeconds}")
-  private int TOKEN_EXPIRATION;
-
-  public JwtUtils(PayloadUtils payloadUtils) {
-    this.payloadUtils = payloadUtils;
-  }
+  private final ApplicationProperties applicationProperties;
 
   public JwtDto createToken(AccountEntity accountEntity) {
 
     Date current = new Date();
     Calendar expiredDate = Calendar.getInstance();
     expiredDate.setTime(current);
-    expiredDate.add(Calendar.SECOND, TOKEN_EXPIRATION);
+    expiredDate.add(Calendar.SECOND, applicationProperties.getJwtConfig().tokenExpiredSeconds());
 
     String token = Jwts.builder()
         .setId(accountEntity.getEmail())
         .setSubject(payloadUtils.parseObjectToString(accountEntity))
         .setIssuedAt(current)
         .setExpiration(expiredDate.getTime())
-        .signWith(SignatureAlgorithm.HS256, TOKEN_SECRET)
+        .signWith(SignatureAlgorithm.HS256, applicationProperties.getJwtConfig().tokenSecret())
         .compact();
 
     return JwtDto.builder()
@@ -49,7 +42,7 @@ public class JwtUtils {
 
   public AccountEntity getAccountFromJWT(String token) throws InvalidJsonException {
     Claims claims = Jwts.parser()
-        .setSigningKey(TOKEN_SECRET)
+        .setSigningKey(applicationProperties.getJwtConfig().tokenSecret())
         .parseClaimsJws(token)
         .getBody();
     String subject = claims.getSubject();
@@ -58,7 +51,7 @@ public class JwtUtils {
 
   public boolean validateToken(String authToken) {
     try {
-      Jwts.parser().setSigningKey(TOKEN_SECRET).parseClaimsJws(authToken);
+      Jwts.parser().setSigningKey(applicationProperties.getJwtConfig().tokenSecret()).parseClaimsJws(authToken);
       return true;
     } catch (MalformedJwtException ex) {
       log.error("Invalid JWT token");

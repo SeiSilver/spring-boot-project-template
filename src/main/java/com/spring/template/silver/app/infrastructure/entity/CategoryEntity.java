@@ -3,7 +3,7 @@ package com.spring.template.silver.app.infrastructure.entity;
 import lombok.*;
 import lombok.experimental.FieldNameConstants;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "category")

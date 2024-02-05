@@ -3,7 +3,7 @@ package com.spring.template.silver.app.infrastructure.entity;
 import com.spring.template.silver.app.infrastructure.enums.RoleType;
 import lombok.*;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "role")
