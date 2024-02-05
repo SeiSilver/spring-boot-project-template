@@ -1,17 +1,18 @@
 package com.spring.template.silver.app.infrastructure.jpa.impl;
 
-import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
-import com.spring.template.silver.app.infrastructure.jpa.AccountCustomRepository;
 import com.spring.template.silver.app.infrastructure.dto.UserUpdateRequest;
+import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
+import com.spring.template.silver.app.infrastructure.entity.base.BaseIdAuditEntity;
+import com.spring.template.silver.app.infrastructure.jpa.AccountCustomRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaBuilder;
+import jakarta.persistence.criteria.CriteriaUpdate;
+import jakarta.persistence.criteria.Root;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.criteria.CriteriaBuilder;
-import jakarta.persistence.criteria.CriteriaUpdate;
-import jakarta.persistence.criteria.Root;
 import java.time.ZonedDateTime;
 
 @Repository
@@ -34,7 +35,7 @@ public class AccountCustomRepositoryImpl implements AccountCustomRepository {
       criteriaUpdate.set(AccountEntity.Fields.fullName, dto.getFullName());
     }
 
-    criteriaUpdate.set(AccountEntity.Fields.modifiedAt, ZonedDateTime.now());
+    criteriaUpdate.set(BaseIdAuditEntity.Fields.modifiedAt, ZonedDateTime.now());
     criteriaUpdate.where(criteriaBuilder.equal(root.get("id"), id));
     entityManager.createQuery(criteriaUpdate).executeUpdate();
 
