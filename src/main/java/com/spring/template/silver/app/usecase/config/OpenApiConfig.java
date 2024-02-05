@@ -1,6 +1,7 @@
 package com.spring.template.silver.app.usecase.config;
 
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
@@ -53,8 +54,7 @@ public class OpenApiConfig {
     return new OpenAPI()
         .info(info)
         .servers(List.of(devServer))
-        .components(new io.swagger.v3.oas.models.Components()
-            .addSecuritySchemes(BEARER, bearerTokenScheme))
+        .components(new Components().addSecuritySchemes(BEARER, bearerTokenScheme))
         .addSecurityItem(securityRequirement);
   }
 

@@ -2,7 +2,6 @@ package com.spring.template.silver.app.security.dto;
 
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
 import com.spring.template.silver.app.infrastructure.enums.AccountStatus;
-import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-@Getter
 public record CustomUserDetails(AccountEntity accountEntity) implements UserDetails {
 
   @Override
