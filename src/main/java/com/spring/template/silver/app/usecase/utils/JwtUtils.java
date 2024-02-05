@@ -3,7 +3,7 @@ package com.spring.template.silver.app.usecase.utils;
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
 import com.spring.template.silver.app.usecase.config.ApplicationProperties;
 import com.spring.template.silver.app.usecase.exception.InvalidJsonException;
-import com.spring.template.silver.app.usecase.security.dto.JwtDto;
+import com.spring.template.silver.app.security.dto.JwtDto;
 import io.jsonwebtoken.*;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

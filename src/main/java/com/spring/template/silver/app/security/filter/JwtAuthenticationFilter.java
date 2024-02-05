@@ -1,6 +1,6 @@
-package com.spring.template.silver.app.usecase.security.filter;
+package com.spring.template.silver.app.security.filter;
 
-import com.spring.template.silver.app.usecase.security.service.CustomUserDetailService;
+import com.spring.template.silver.app.security.service.CustomUserDetailService;
 import com.spring.template.silver.app.usecase.utils.JwtUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

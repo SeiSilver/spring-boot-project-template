@@ -1,8 +1,8 @@
-package com.spring.template.silver.app.usecase.security.service;
+package com.spring.template.silver.app.security.service;
 
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
+import com.spring.template.silver.app.security.dto.CustomUserDetails;
 import com.spring.template.silver.app.usecase.exception.UserNotFoundException;
-import com.spring.template.silver.app.usecase.security.dto.CustomUserDetails;
 import com.spring.template.silver.app.usecase.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

@@ -1,6 +1,6 @@
-package com.spring.template.silver.app.usecase.security;
+package com.spring.template.silver.app.security;
 
-import com.spring.template.silver.app.usecase.security.filter.JwtAuthenticationFilter;
+import com.spring.template.silver.app.security.filter.JwtAuthenticationFilter;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

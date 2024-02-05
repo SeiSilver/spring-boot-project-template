@@ -1,7 +1,7 @@
 package com.spring.template.silver.app;
 
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
-import com.spring.template.silver.app.usecase.security.service.AuditorAwareImpl;
+import com.spring.template.silver.app.security.service.AuditorAwareImpl;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

@@ -1,4 +1,4 @@
-package com.spring.template.silver.app.usecase.security.dto;
+package com.spring.template.silver.app.security.dto;
 
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
 import com.spring.template.silver.app.infrastructure.entity.RoleEntity;

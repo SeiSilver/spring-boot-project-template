@@ -1,4 +1,4 @@
-package com.spring.template.silver.app.usecase.security.service;
+package com.spring.template.silver.app.security.service;
 
 import com.spring.template.silver.app.infrastructure.entity.AccountEntity;
 import com.spring.template.silver.app.infrastructure.jpa.AccountRepository;

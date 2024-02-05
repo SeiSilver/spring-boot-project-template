@@ -1,4 +1,4 @@
-package com.spring.template.silver.app.usecase.security.dto;
+package com.spring.template.silver.app.security.dto;
 
 import lombok.*;
 
