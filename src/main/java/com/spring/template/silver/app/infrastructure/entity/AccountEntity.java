@@ -41,18 +41,4 @@ public class AccountEntity extends BaseIdAuditEntity<Integer> {
       inverseJoinColumns = @JoinColumn(name = "role_id"))
   private List<RoleEntity> roles;
 
-  @Override
-  public String toString() {
-    return "AccountEntity{" +
-        "id=" + super.getId() +
-        ", email='" + email + '\'' +
-        ", passwordHash='" + passwordHash + '\'' +
-        ", fullName='" + fullName + '\'' +
-        ", avatarUrl='" + avatarUrl + '\'' +
-        ", status=" + status +
-        ", roles=" + roles +
-        ", modifiedAt=" + super.getModifiedAt() +
-        ", createdAt=" + super.getCreatedAt() +
-        '}';
-  }
 }
