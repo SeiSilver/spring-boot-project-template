@@ -1,23 +1,22 @@
 package com.spring.template.silver.app.infrastructure.entity;
 
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
-
-import jakarta.persistence.*;
+import com.spring.template.silver.app.infrastructure.entity.base.BaseIdEntity;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "category")
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldNameConstants
-public class CategoryEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+public class CategoryEntity extends BaseIdEntity<Integer> {
 
   private String name;
 

@@ -1,28 +1,21 @@
 package com.spring.template.silver.app.infrastructure.entity;
 
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.jpa.domain.support.AuditingEntityListener;
-
+import com.spring.template.silver.app.infrastructure.entity.base.BaseIdAuditEntity;
 import jakarta.persistence.*;
-import java.time.ZonedDateTime;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 @Entity
 @Table(name = "product")
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@EntityListeners(AuditingEntityListener.class)
-@FieldNameConstants
-public class ProductEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+public class ProductEntity extends BaseIdAuditEntity<Integer> {
 
   @Column(nullable = false)
   private String name;
@@ -36,11 +29,5 @@ public class ProductEntity {
   @ManyToOne(fetch = FetchType.LAZY)
   @JoinColumn(name = "category_id")
   private CategoryEntity category;
-
-  @LastModifiedDate
-  private ZonedDateTime modifiedAt;
-
-  @CreatedDate
-  private ZonedDateTime createdAt;
 
 }

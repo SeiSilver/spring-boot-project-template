@@ -1,30 +1,26 @@
 package com.spring.template.silver.app.infrastructure.entity;
 
+import com.spring.template.silver.app.infrastructure.entity.base.BaseIdAuditEntity;
 import com.spring.template.silver.app.infrastructure.enums.AccountStatus;
-import lombok.*;
-import lombok.experimental.FieldNameConstants;
-import org.springframework.data.annotation.CreatedDate;
-import org.springframework.data.annotation.LastModifiedDate;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import jakarta.persistence.*;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 @Entity
 @Table(name = "account")
 @Getter
 @Setter
-@Builder
+@SuperBuilder
 @NoArgsConstructor
 @AllArgsConstructor
-@FieldNameConstants
 @EntityListeners(AuditingEntityListener.class)
-public class AccountEntity {
-
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+public class AccountEntity extends BaseIdAuditEntity<Integer> {
 
   private String email;
 
@@ -43,24 +39,18 @@ public class AccountEntity {
       inverseJoinColumns = @JoinColumn(name = "role_id"))
   private List<RoleEntity> roles;
 
-  @LastModifiedDate
-  private ZonedDateTime modifiedAt;
-
-  @CreatedDate
-  private ZonedDateTime createdAt;
-
   @Override
   public String toString() {
     return "AccountEntity{" +
-        "id=" + id +
+        "id=" + super.getId() +
         ", email='" + email + '\'' +
         ", passwordHash='" + passwordHash + '\'' +
         ", fullName='" + fullName + '\'' +
         ", avatarUrl='" + avatarUrl + '\'' +
         ", status=" + status +
         ", roles=" + roles +
-        ", modifiedAt=" + modifiedAt +
-        ", createdAt=" + createdAt +
+        ", modifiedAt=" + super.getModifiedAt() +
+        ", createdAt=" + super.getCreatedAt() +
         '}';
   }
 }
