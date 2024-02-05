@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,14 +41,14 @@ public class ProductController {
   @PostMapping("/product")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @Operation(security = @SecurityRequirement(name = StringConstraint.BEARER))
-  public void add(NewProductRequest request) {
+  public void add(@Valid @RequestBody NewProductRequest request) {
     productHandler.addHandler(request);
   }
 
   @PutMapping("/product")
   @PreAuthorize("hasRole('ROLE_ADMIN')")
   @Operation(security = @SecurityRequirement(name = StringConstraint.BEARER))
-  public void update(UpdateProductRequest request) {
+  public void update(@Valid @RequestBody UpdateProductRequest request) {
     productHandler.updateHandler(request);
   }
 

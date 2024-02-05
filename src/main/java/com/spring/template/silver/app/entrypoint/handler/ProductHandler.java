@@ -4,6 +4,7 @@ import com.spring.template.silver.app.entrypoint.payload.product.NewProductReque
 import com.spring.template.silver.app.entrypoint.payload.product.ProductDto;
 import com.spring.template.silver.app.entrypoint.payload.product.UpdateProductRequest;
 import com.spring.template.silver.app.infrastructure.dto.ProductInfo;
+import com.spring.template.silver.app.infrastructure.entity.CategoryEntity;
 import com.spring.template.silver.app.infrastructure.entity.ProductEntity;
 import com.spring.template.silver.app.usecase.exception.DataNotFoundException;
 import com.spring.template.silver.app.usecase.service.ProductService;
@@ -39,8 +40,12 @@ public class ProductHandler {
         .name(request.getName())
         .description(request.getDescription())
         .price(request.getPrice())
-        .category(request.getCategory())
         .build();
+
+    if (request.getCategoryId() != null && request.getCategoryId() > 0) {
+      productEntity.setCategory(CategoryEntity.builder().id(request.getCategoryId()).build());
+    }
+
     productService.save(productEntity);
   }
 
@@ -50,8 +55,12 @@ public class ProductHandler {
         .name(request.getName())
         .description(request.getDescription())
         .price(request.getPrice())
-        .category(request.getCategory())
         .build();
+
+    if (request.getCategoryId() != null && request.getCategoryId() > 0) {
+      productEntity.setCategory(CategoryEntity.builder().id(request.getCategoryId()).build());
+    }
+
     productService.save(productEntity);
   }
 
